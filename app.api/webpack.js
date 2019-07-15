@@ -6,7 +6,7 @@ const NodemonPlugin = require('nodemon-webpack-plugin');
 module.exports = (env, argv) => {
     env = env || {};
     const development =
-      argv.mode === 'development' || env.NODE_ENV === 'development';
+        argv.mode === 'development' || env.NODE_ENV === 'development';
 
     const debuggerPort = process.env.NETWORK__PORT__DEBUGGER || 3001;
 
@@ -22,12 +22,13 @@ module.exports = (env, argv) => {
         output: {
             libraryTarget: 'commonjs',
             path: path.join(__dirname, 'build'),
-            filename: 'index.js',
+            filename: `index${development ? '-dev' : ''}.js`,
         },
         resolve: {
             extensions: ['.ts', '.js'],
             symlinks: false,
         },
+        devtool: development ? 'source-map' : false,
         module: {
             rules: [
                 {
@@ -49,7 +50,10 @@ module.exports = (env, argv) => {
                                         },
                                     ],
                                 ],
-                                plugins: ['@babel/plugin-proposal-object-rest-spread'],
+                                plugins: [
+                                    '@babel/plugin-proposal-object-rest-spread',
+                                ],
+                                cacheDirectory: true,
                             },
                         },
                     ],
@@ -58,21 +62,22 @@ module.exports = (env, argv) => {
                     test: /\.(txt|html)$/,
                     use: 'raw-loader',
                 },
-                
             ],
         },
         plugins: [
             new webpack.ProvidePlugin({
                 _: [path.join(__dirname, `src/lib/lodash.js`), 'default'],
-              logger: ['ew-internals', 'logger'],
+                logger: ['ew-internals', 'logger'],
             }),
             new webpack.DefinePlugin({
                 __DEV__: development,
                 __TEST__: false,
             }),
             new NodemonPlugin({
-              nodeArgs: development ? [`--inspect=0.0.0.0:${debuggerPort}`] : [],
-              watch: path.join(__dirname, 'build'),
+                nodeArgs: development
+                    ? [`--inspect=0.0.0.0:${debuggerPort}`]
+                    : [],
+                watch: path.join(__dirname, 'build'),
             }),
         ],
     };
