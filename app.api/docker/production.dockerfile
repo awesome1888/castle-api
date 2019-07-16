@@ -6,7 +6,9 @@ WORKDIR /app
 COPY . .
 RUN yarn
 
+ENV NODE_ENV=production
+
 RUN yarn run build
 
-EXPOSE 3010
+EXPOSE 3000
 CMD [ "yarn", "start" ]

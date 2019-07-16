@@ -69,16 +69,18 @@ module.exports = (env, argv) => {
                 _: [path.join(__dirname, `src/lib/lodash.js`), 'default'],
                 logger: ['ew-internals', 'logger'],
             }),
-            new webpack.DefinePlugin({
-                __DEV__: development,
-                __TEST__: false,
-            }),
-            new NodemonPlugin({
-                nodeArgs: development
-                    ? [`--inspect=0.0.0.0:${debuggerPort}`]
-                    : [],
-                watch: path.join(__dirname, 'build'),
-            }),
-        ],
+            development &&
+                new webpack.DefinePlugin({
+                    __DEV__: development,
+                    __TEST__: false,
+                }),
+            development &&
+                new NodemonPlugin({
+                    nodeArgs: development
+                        ? [`--inspect=0.0.0.0:${debuggerPort}`]
+                        : [],
+                    watch: path.join(__dirname, 'build'),
+                }),
+        ].filter(x => !!x),
     };
 };
