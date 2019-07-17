@@ -69,11 +69,10 @@ module.exports = (env, argv) => {
                 _: [path.join(__dirname, `src/lib/lodash.js`), 'default'],
                 logger: ['ew-internals', 'logger'],
             }),
-            development &&
-                new webpack.DefinePlugin({
-                    __DEV__: development,
-                    __TEST__: false,
-                }),
+            new webpack.DefinePlugin({
+                __DEV__: development,
+                __TEST__: false,
+            }),
             development &&
                 new NodemonPlugin({
                     nodeArgs: development

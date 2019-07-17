@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
 
 import { Settings } from 'ew-internals';
 
@@ -8,6 +9,7 @@ import { Settings } from 'ew-internals';
 // import { InterCom } from './intercom';
 
 import attachHomeAPI from '../api/home';
+import attachCitiesAPI from '../api/cities';
 // import attachGraphQL from '../api/graphql';
 
 export default class Application {
@@ -22,7 +24,8 @@ export default class Application {
         instance.attachErrorHandler(app);
 
         const host = await settings.get('network.host', 'localhost');
-        const port = await settings.get('network.port', 3000);
+        const port =
+            process.env.PORT || (await settings.get('network.port', 3000));
 
         app.set('host', host);
         app.set('port', port);
@@ -33,6 +36,7 @@ export default class Application {
 
         // this.attachCORS(app, settings);
 
+        app.use(express.static(path.join(process.cwd(), 'public')));
         app.use(helmet());
         app.use(express.json());
         // // turn on URL-encoded parser for REST services
@@ -56,6 +60,7 @@ export default class Application {
         // await intercom.start();
 
         attachHomeAPI(app);
+        attachCitiesAPI(app);
         // attachGraphQL(app, { dataSources: { database, intercom } });
 
         instance._express = app;
