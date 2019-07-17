@@ -7,6 +7,7 @@ COPY . .
 RUN yarn
 
 ENV NODE_ENV=production
+ENV NETWORK__CORS=*
 
 RUN yarn run build
 

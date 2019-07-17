@@ -1,29 +1,29 @@
-version: '3'
+version: "3"
 services:
   container-list:
     image: awesome1888/container-list
     expose:
-      - '2000'
+      - "2000"
     ports:
-      - '2000:2000'
+      - "2000:2000"
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     environment:
       - PORT=2000
   api:
-    image: 'api:dev'
+    image: "api:dev"
     build:
       context: ../app.api/
       dockerfile: docker/development.dockerfile
     expose:
-      - '3000'
-      - '3001'
+      - "3000"
+      - "3001"
     ports:
-      - '3000:3000'
-      - '3001:3001'
+      - "3000:3000"
+      - "3001:3001"
     depends_on: []
     volumes:
-      - '../app.api/:/app/'
+      - "../app.api/:/app/"
     environment:
       - NODE_ENV=development
       - DEBUG=gql.*
@@ -31,9 +31,9 @@ services:
       - DEBUG_HIDE_DATE=1
       - NETWORK__PORT=3000
       - NETWORK__PORT__DEBUGGER=3001
-      - NETWORK__CORS=
-      - 'DATABASE__URL=''postgres://root:123@db:5432/api'''
-      - 'INTERCOM__URL=''redis://intercom:6380'''
+      - NETWORK__CORS=*
+      - "DATABASE__URL='postgres://root:123@db:5432/api'"
+      - "INTERCOM__URL='redis://intercom:6380'"
     labels:
       com.list.name: API
       com.list.link.endpoint: GraphQL endpoint|/graphql
