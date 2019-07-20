@@ -3,7 +3,7 @@ import castles from '../data/castles';
 
 export default app => {
     app.get(
-        '/castle',
+        '/castles',
         wrapError(async (req, res) => {
             return res
                 .status(200)

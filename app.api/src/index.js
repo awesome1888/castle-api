@@ -8,7 +8,7 @@ import useErrorHandler from './lib/error-handler';
 import useCORS from './lib/cors';
 
 import useHomeAPI from './api/home';
-import useCitiesAPI from './api/cities';
+import useCitiesAPI from './api/castles';
 
 (async () => {
     const app = express();
