@@ -1,18 +1,18 @@
 import { wrapError } from 'ew-internals';
-import cities from '../data/cities';
+import castles from '../data/castles';
 
 export default app => {
     app.get(
-        '/cities',
+        '/castle',
         wrapError(async (req, res) => {
             return res
                 .status(200)
                 .header('Content-Type', 'application/json')
-                .send(JSON.stringify(cities));
+                .send(JSON.stringify(castles));
         }),
     );
     app.get(
-        '/cities/:id',
+        '/castles/:id',
         wrapError(async (req, res) => {
             const id = parseInt(req.params.id, 10);
             if (Number.isNaN(id)) {
@@ -21,7 +21,7 @@ export default app => {
 
             res.status(200)
                 .header('Content-Type', 'application/json')
-                .send(JSON.stringify(cities.find(city => city.id === id)));
+                .send(JSON.stringify(castles.find(castle => castle.id === id)));
         }),
     );
 };

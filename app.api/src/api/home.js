@@ -4,7 +4,7 @@ export default app => {
     app.get(
         '/',
         wrapError(async (req, res) => {
-            res.status(200).send('Hello from API!');
+            res.status(200).send('Welcome, friend!');
         }),
     );
 };
