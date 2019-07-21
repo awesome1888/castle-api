@@ -9,6 +9,7 @@ import useCORS from './lib/cors';
 
 import useHomeAPI from './api/home';
 import useCitiesAPI from './api/castles';
+import useCountriesAPI from './api/countries';
 
 (async () => {
     const app = express();
@@ -51,6 +52,7 @@ import useCitiesAPI from './api/castles';
 
     useHomeAPI(app);
     useCitiesAPI(app);
+    useCountriesAPI(app);
 
     app.listen({ port }, () => {
         logger.info(`🚀 API is ready at http://${host}:${port}`, !__TEST__);

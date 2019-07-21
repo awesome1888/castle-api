@@ -4,7 +4,7 @@ export default [
         name: 'Malbork',
         picture: '/img/malbork.jpg',
         pictureAuthor: 'DerHexer; derivate work: Carschten',
-        country: 'Poland',
+        country: 'PL',
         century: 13,
     },
     {
@@ -12,7 +12,7 @@ export default [
         name: 'Neuschwanstein',
         picture: '/img/neuschwanstein.jpg',
         pictureAuthor: 'Nico Benedickt',
-        country: 'Germany',
+        country: 'DE',
         century: 19,
     },
     {
@@ -20,7 +20,7 @@ export default [
         name: 'Wernigerode',
         picture: '/img/wernigerode.jpg',
         pictureAuthor: 'Andreas Tille',
-        country: 'Germany',
+        country: 'DE',
         century: 17,
     },
     {
@@ -28,7 +28,7 @@ export default [
         name: 'Nuremberg',
         picture: '/img/nuremberg.jpg',
         pictureAuthor: 'Hajo Dietz',
-        country: 'Germany',
+        country: 'DE',
         century: 11,
     },
     {
@@ -36,7 +36,7 @@ export default [
         name: 'Wawel',
         picture: '/img/wawel.jpg',
         pictureAuthor: 'FotoCavallo',
-        country: 'Poland',
+        country: 'PL',
         century: 13,
     },
 ];
