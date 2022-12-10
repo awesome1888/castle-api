@@ -65,7 +65,7 @@
         "debug": "^4.1.1",
         "deep-freeze-node": "^1.1.3",
         "ew-internals": "^1.0.10",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "graphql": "^14.4.2",
         "helmet": "^3.18.0",
         "ioredis": "^4.11.2",
